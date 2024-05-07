@@ -1,12 +1,12 @@
 {
   "name": "@we-made/recurrence-pattern",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Recurrence pattern helper library",
   "repository": "https://github.com/wemadefree/recurrence-pattern",
   "author": "We Made AS",
   "license": "MIT",
   "main": "lib/index.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "build": "rm -rf lib && npx tsc",
     "test": "npx ts-mocha 'src/**/*.spec.ts'"
