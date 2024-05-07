@@ -1,0 +1,37 @@
+{
+  "name": "@we-made/recurrence-pattern",
+  "version": "1.0.0",
+  "description": "Recurrence pattern helper library",
+  "repository": "https://github.com/wemadefree/recurrence-pattern",
+  "author": "We Made AS",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "rm -rf lib && npx tsc",
+    "test": "npx ts-mocha 'src/**/*.spec.ts'"
+  },
+  "files": [
+    "lib/**/*.js",
+    "lib/**/*.d.ts"
+  ],
+  "dependencies": {
+    "@types/mocha": "^10.0.6",
+    "chai": "^4.3.4",
+    "mocha": "^10.4.0",
+    "rrule": "^2.8.1",
+    "ts-mocha": "^10.0.0",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.4",
+    "@types/node": "^20.12.8",
+    "typescript": "^5.4.5"
+  },
+  "peerDependencies": {},
+  "prettier": {
+    "singleQuote": true,
+    "semi": true,
+    "printWidth": 200
+  }
+}
