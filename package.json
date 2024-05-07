@@ -5,15 +5,15 @@
   "repository": "https://github.com/wemadefree/recurrence-pattern",
   "author": "We Made AS",
   "license": "MIT",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "type": "commonjs",
   "scripts": {
-    "build": "rm -rf lib && npx tsc",
+    "build": "rm -rf dist && npx tsc",
     "test": "npx ts-mocha 'src/**/*.spec.ts'"
   },
   "files": [
-    "lib/**/*.js",
-    "lib/**/*.d.ts"
+    "dist/**/*.js",
+    "dist/**/*.d.ts"
   ],
   "dependencies": {
     "rrule": "^2.8.1",
