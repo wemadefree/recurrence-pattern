@@ -24,7 +24,7 @@ export class RecurrencePattern implements IRecurrencePattern {
   excludeDates: Date[] = [];
 
   constructor(data: IRecurrencePattern) {
-    this.baseDate = data.baseDate;
+    this.baseDate = new Date(data.baseDate);
     this.type = data.type;
     this.interval = data.interval;
     this.daysOfWeek = data.daysOfWeek || [];
