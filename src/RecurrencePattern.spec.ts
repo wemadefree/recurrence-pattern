@@ -111,6 +111,20 @@ describe(__filename, function () {
     expect(relativeYearlyInvalid.isValidPattern).to.be.false;
   });
 
+  it('RecurrencePattern nextOccurrence without afterDate', function () {
+    const baseDate = new Date();
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const pattern = new RecurrencePattern({
+      baseDate,
+      type: 'daily',
+      interval: 1,
+    });
+
+    const nextOccurrence = pattern.nextOccurrence();
+    expect(nextOccurrence).to.deep.equal(tomorrow);
+  });
+
   it('RecurrencePattern nextOccurrence daily every day leap year', function () {
     const baseDate = new Date('2024-02-28');
     const pattern = new RecurrencePattern({
