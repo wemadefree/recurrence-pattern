@@ -132,6 +132,13 @@ export class RecurrencePattern implements IRecurrencePattern {
       };
     }
 
+    if (['relativeYearly'].includes(this.type)) {
+      rule = {
+        ...rule,
+        bymonth: this.month,
+      };
+    }
+
     return new RRule({
       ...rule,
       ...opts,
