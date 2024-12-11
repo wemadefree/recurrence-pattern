@@ -365,6 +365,34 @@ describe(__filename, function () {
     ]);
   });
 
+  it('RecurrencePattern occurrencesBetween relativeYearly first monday in december', function () {
+    const baseDate = new Date('2020-01-01');
+    const pattern = new RecurrencePattern({
+      baseDate,
+      type: 'relativeYearly',
+      interval: 1,
+      daysOfWeek: ['monday'],
+      month: 12,
+      index: 'first',
+    });
+
+    const afterDate = new Date('2020-01-01');
+    const beforeDate = new Date('2030-01-01');
+    const occurrences = pattern.occurrencesBetween(afterDate, beforeDate);
+    expect(occurrences).to.deep.equal([
+      new Date('2020-12-07'),
+      new Date('2021-12-06'),
+      new Date('2022-12-05'),
+      new Date('2023-12-04'),
+      new Date('2024-12-02'),
+      new Date('2025-12-01'),
+      new Date('2026-12-07'),
+      new Date('2027-12-06'),
+      new Date('2028-12-04'),
+      new Date('2029-12-03'),
+    ]);
+  });
+
   it('RecurrencePattern occurrencesBetween absoluteYearly 15th of june', function () {
     const baseDate = new Date('2020-01-01');
     const pattern = new RecurrencePattern({
