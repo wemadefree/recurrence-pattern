@@ -159,15 +159,15 @@ export class RecurrencePattern implements IRecurrencePattern {
     return ruleSet.before(beforeDate);
   }
 
-  occurrencesBetween(afterDate: Date, beforeDate: Date, count?: number): Date[] {
+  occurrencesBetween(afterDate: Date, beforeDate: Date, count?: number, inclusive = false): Date[] {
     const ruleSet = new RRuleSet();
     ruleSet.rrule(this.generateRRule());
     this.excludeDates.forEach(date => ruleSet.exdate(date));
 
     if (count) {
-      return ruleSet.between(afterDate, beforeDate, false, (date, i) => i < count);
+      return ruleSet.between(afterDate, beforeDate, inclusive, (date, i) => i < count);
     }
-    return ruleSet.between(afterDate, beforeDate);
+    return ruleSet.between(afterDate, beforeDate, inclusive);
   }
 
   occurrences(count: number): Date[] {

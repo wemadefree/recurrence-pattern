@@ -448,4 +448,63 @@ describe(__filename, function () {
       new Date('2029-06-15'),
     ]);
   });
+
+  it('RecurrencePattern occurrencesBetween weekly every other tuesday should start with first upcoming tuesday', function () {
+    const baseDate = new Date('2025-04-15'); // A Thursday
+    const pattern = new RecurrencePattern({
+      baseDate,
+      type: 'weekly',
+      interval: 2,
+      daysOfWeek: ['tuesday'],
+    });
+
+    const afterDate = new Date('2025-04-10');
+    const beforeDate = new Date('2025-05-10');
+    const occurrences = pattern.occurrencesBetween(afterDate, beforeDate, 0, true);
+    expect(occurrences).to.deep.equal([
+      new Date('2025-04-15'),
+      new Date('2025-04-29'),
+    ]);
+  });
+
+  it('RecurrencePattern occurrencesBetween relativeMonthly first monday in month every 6 months', function () {
+    const baseDate = new Date('2025-04-30');
+    const pattern = new RecurrencePattern({
+      baseDate,
+      type: 'relativeMonthly',
+      interval: 6,
+      daysOfWeek: ['monday'],
+      index: 'first',
+    });
+
+    const afterDate = new Date('2025-04-30');
+    const beforeDate = new Date('2025-12-31');
+    const occurrences = pattern.occurrencesBetween(afterDate, beforeDate);
+    expect(occurrences).to.deep.equal([
+      // Why isn't first monday of May the first occurrence?
+      // Because current month of afterDate is always taken into account.
+      // If we always set baseDate/afterDate to the first occurence with inclusion, this will work as expected
+      // by the user. See next test case.
+      new Date('2025-10-06'), // First Monday in October
+    ]);
+  });
+
+  it('RecurrencePattern occurrencesBetween relativeMonthly first monday in month every 6 months with first monday as basedate', function () {
+    const baseDate = new Date('2025-05-05');
+    const pattern = new RecurrencePattern({
+      baseDate,
+      type: 'relativeMonthly',
+      interval: 6,
+      daysOfWeek: ['monday'],
+      index: 'first',
+    });
+
+    const afterDate = new Date('2025-05-05');
+    const beforeDate = new Date('2025-12-31');
+    const occurrences = pattern.occurrencesBetween(afterDate, beforeDate, 0, true);
+    expect(occurrences).to.deep.equal([
+      new Date('2025-05-05'), // First Monday in May
+      new Date('2025-11-03'), // First Monday in October
+    ]);
+  });
 });
